@@ -1,21 +1,22 @@
-const express = require("express");
-const app = express();
-const bodyparser =require("body-parser");
 const knex = require("./connection");
-app.use(bodyparser.json())
-const connection = require ("./connection")
+const route = require("./signup");
+const express = require("express");
+const app1 = express.Router();
+const jwt = require("jsonwebtoken");
 
-app.post("/login",(req,res) => {
-    knex.select("*").from ("tableMVC")
+
+app1.post("/login",(req,res) => {
+    knex.select("*").from ("nehaMVC")
     .then((data) => {
         for(var i = 0; i<data.length;i++){
-            if(data[i]["name"] == name){
-                console.log("login done")
-                res.send("login done")
+            if(data[i]["email"] == req.body.email && data[i]["password"] == req.body.password){
+                const Token = jwt.sign({email : req.body.email,password : req.body.password},"nehamvc")
+                res.send({Token : Token});
             }
         }
     })
-    let name = req.body.name
-    let age = req.body.name
-
 })
+
+
+
+module.exports = app1;

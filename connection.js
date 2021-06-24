@@ -4,23 +4,26 @@ const knex = require("knex")({
     client : "mysql",
     connection : ({
         host : "localhost",
-        username : "rooot",
+        user : "root",
         password : "Neha@1234",
         database : "MVCpatternDB"
     })
 })
 
-knex.schema.hasTable("tableMVC").then((existe) => {
+knex.schema.hasTable("nehaMVC").then((existe) => {
     if(!existe){
-        return knex.schema.createTable("tableMVC",(table) => {
-            console.log(1)
+        return knex.schema.createTable("nehaMVC",(table) => {
             table.increments("id").primary(),
             table.string ("name"),
+            table.string ("email"),
+            table.string ("password"),
             table.string ("batch"),
             table.string ("subject")
         })
     }
-    console.log(2)
 })
 
 module.exports = knex;
+
+
+
