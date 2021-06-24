@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const knex = require("./connection");
-const route = require('./signup');
+// const knex = require("./connection");
+// const route = require('./signup');
 const app1 = require('./login');
 
 
