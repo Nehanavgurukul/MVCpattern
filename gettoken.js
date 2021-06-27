@@ -1,8 +1,7 @@
 const express = require("express");
-const app = express();
-// const knex = require("./connection");
-// const route = require('./signup');
-const app1 = require('./login');
+const app = express.Router();
+const knex = require("./connection");
+const jwt = require("jsonwebtoken")
 
 
 app.get('/gettoken',verifyToken,(req,res) => {
@@ -11,8 +10,9 @@ app.get('/gettoken',verifyToken,(req,res) => {
             console.log(err)
         }else{
             console.log("verification successfully")
-            res.send({message : "verification successfully",
-            authdata : authdata});
+            // res.send({message : "verification successfully",
+            // authdata : authdata});
+            res.send(authdata)
         }
     })
 });
@@ -26,6 +26,8 @@ function verifyToken(req,res,next){
         next()
     };
 };
+
+module.exports = app;
 
 
 

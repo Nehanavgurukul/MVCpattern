@@ -1,8 +1,8 @@
 const knex = require("./connection");
-const route = require("./signup");
 const express = require("express");
 const app1 = express.Router();
 const jwt = require("jsonwebtoken");
+
 
 
 app1.post("/login",(req,res) => {
@@ -12,6 +12,9 @@ app1.post("/login",(req,res) => {
             if(data[i]["email"] == req.body.email && data[i]["password"] == req.body.password){
                 const Token = jwt.sign({email : req.body.email,password : req.body.password},"nehamvc")
                 res.send({Token : Token});
+            }else{
+                console.log("invalid details..")
+                res.send("invalid details")
             }
         }
     })
