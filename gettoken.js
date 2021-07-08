@@ -10,8 +10,6 @@ app.get('/gettoken',verifyToken,(req,res) => {
             console.log(err)
         }else{
             console.log("verification successfully")
-            // res.send({message : "verification successfully",
-            // authdata : authdata});
             res.send(authdata)
         }
     })
